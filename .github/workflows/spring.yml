@@ -1,0 +1,24 @@
+name: Deploy Spring API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check secret exists
+        run: |
+          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_SPRING }}" ]; then
+            echo "❌ ERROR: El secret RENDER_DEPLOY_HOOK_SPRING no está configurado."
+            echo "Ve a tu repositorio → Settings → Secrets and variables → Actions → New repository secret"
+            exit 1
+          fi
+
+      - name: Trigger Render Deploy (Spring)
+        run: |
+          curl --fail -X POST "${{ secrets.RENDER_DEPLOY_HOOK_SPRING }}"
+          echo "✅ Deploy de Api-SpringBoot disparado correctamente"

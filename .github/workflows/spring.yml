@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Check secret exists
         run: |
-          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_SPRIN }}" ]; then
+          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_SPRING }}" ]; then
             echo "❌ ERROR: El secret RENDER_DEPLOY_HOOK_SPRING no está configurado."
             echo "Ve a tu repositorio → Settings → Secrets and variables → Actions → New repository secret"
             exit 1
